@@ -5,7 +5,7 @@ import './post-list.css';
 
 
 
-const PostList = ({posts, onDelete}) => {
+const PostList = ({posts, onDelete,onToggleImportant, onToggleLiked}) => {
 
    // eslint-disable-next-line array-callback-return
    const elements = posts.map((item) => {
@@ -15,7 +15,9 @@ const PostList = ({posts, onDelete}) => {
             <li key={id} className="list-group-item">
                < PostListItem 
                   {...itemProps}
-                  onDelete={() => onDelete(id)}/>
+                  onDelete={() => onDelete(id)}
+                  onToggleImportant= {() => onToggleImportant(id)}
+                  onToggleLiked = {() => onToggleLiked(id)} />
                {/* Тоже самое что и <PostListItem {...item}/> но стандарт es9 */}
                {/* < PostListItem label = {item.label} important = {item.important}/> */}
             </li>
