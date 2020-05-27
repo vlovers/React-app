@@ -1,23 +1,26 @@
 import React from 'react';
 import PostListItem from '../post-list-item/post-list-item';
-import { ListGroup, ListGroupItem } from 'reactstrap';
+import { ListGroup } from 'reactstrap';
 import './post-list.css';
 
 
 
-const PostList = ({posts}) => {
+const PostList = ({posts, onDelete}) => {
+
+   // eslint-disable-next-line array-callback-return
    const elements = posts.map((item) => {
       if ( typeof item === 'object' && isEmpty(item) ){ 
          const {id, ...itemProps} = item;
          return (
             <li key={id} className="list-group-item">
-               <PostListItem {...itemProps}/>
-
+               < PostListItem 
+                  {...itemProps}
+                  onDelete={() => onDelete(id)}/>
                {/* Тоже самое что и <PostListItem {...item}/> но стандарт es9 */}
                {/* < PostListItem label = {item.label} important = {item.important}/> */}
             </li>
             )
-        } 
+      } 
    })
 
    function isEmpty(obj) {
